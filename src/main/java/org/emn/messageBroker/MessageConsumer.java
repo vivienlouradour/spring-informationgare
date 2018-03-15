@@ -1,12 +1,16 @@
 package org.emn.messageBroker;
 
+import java.util.Arrays;
 import java.util.Properties;
 
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public abstract class MessageConsumer implements Runnable {
 
 	KafkaConsumer<String, String> consumer;
+	ObjectMapper mapper = new ObjectMapper();
 
 	public MessageConsumer(String topic) {
 		Properties props = new Properties();
@@ -18,6 +22,8 @@ public abstract class MessageConsumer implements Runnable {
 		props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 		props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 		consumer = new KafkaConsumer<String, String>(props);
+		consumer.subscribe(Arrays.asList(topic));
+
 	}
 
 	abstract public void listen();
