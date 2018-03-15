@@ -29,13 +29,13 @@ public class CatalogueConsumer extends MessageConsumer {
 				// print the offset,key and value for the consumer records.
 				System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value());
 				try {
+					System.out.println(record.value());
 					Course obj = mapper.readValue(record.value(), Course.class);
 					courseService.addCourse(obj);
+					System.out.println("Ajout de la course OK");
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 			}
 		}
 	}
