@@ -26,18 +26,40 @@ public class CourseService {
 		}
 		return courses;
 	}
+	
+	public List<Course> getDeparts(String aGare) {
+		
+		ArrayList<Course> vDeparts = new ArrayList<>();
+		for (Course vCourse: courseRepository.findAll()) {
+			if (vCourse.isGareDepart(aGare)) {
+				vDeparts.add(vCourse);				
+			}
+		}
+		return vDeparts;
+	}
+	
+	public List<Course> getArrivees(String aGare) {
+		
+		ArrayList<Course> vDeparts = new ArrayList<>();
+		for (Course vCourse: courseRepository.findAll()) {
+			if (vCourse.isGareArrivee(aGare)) {
+				vDeparts.add(vCourse);				
+			}
+		}
+		return vDeparts;
+	}
 
 	public Course getCourse(String id) {	
 		
 		return courseRepository.findOne(id);
 	}
 
-	public void addCourse(String id, Course course) {
+	public void addCourse(Course course) {
 		
 		courseRepository.save(course);		
 	}
 
-	public void updateCourse(String id, Course course) {
+	public void updateCourse(Course course) {
 		
 		courseRepository.save(course);
 	}

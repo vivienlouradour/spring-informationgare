@@ -1,6 +1,7 @@
 package imta.fila1.spring.informationgare.modele;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Classe de définition des courses
@@ -63,5 +64,17 @@ public class Course {
 		
 		this.listPassages = listPassages;
 	}
+	
+	public boolean isGareDepart(String aGare) {
+		POI vPoi = getListPassages().get(0).getPoiPassage();
+		return vPoi.getNomPOI().equals(aGare);
+	}
+	
+	public boolean isGareArrivee(String aGare) {
+		POI vPoi = getListPassages().get(getListPassages().size()).getPoiPassage();
+		return vPoi.getNomPOI().equals(aGare);
+	
+	}
+	
 }
 
