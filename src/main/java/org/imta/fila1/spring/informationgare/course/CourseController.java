@@ -12,32 +12,25 @@ public class CourseController {
 	@Autowired
 	private CourseService courseService;
 
-	@RequestMapping("/{type}/{gare}")
-	public ModelAndView getCourse(@PathVariable String type, @PathVariable String gare) {
-		
-		ModelAndView vView = new ModelAndView("errorView");
+	@RequestMapping("/departs/{gare}")
+	public ModelAndView getDeparts(@PathVariable String gare) {
+		return getCourse("departs", gare);
+	}
 
-		boolean vIsDepart = type.contains("dep");
-		boolean vIsArrivee = type.contains("arr");
-		
-		if ( vIsDepart || vIsArrivee && gare != null) {
-		
+	@RequestMapping("/arrivees/{gare}")
+	public ModelAndView getArrivees(@PathVariable String gare) {
+		return getCourse("arrivees", gare);
+	}
+	
+	public ModelAndView getCourse(String aType, String aGare) {
+		ModelAndView vView = new ModelAndView("errorView");
+		if (aGare != null) {
 			vView = new ModelAndView("coursesView");
-			vView.addObject("courses", courseService.getDeparts(gare));
-			vView.addObject("gare", gare);
-			
-			String vType = vIsDepart ? "departs" : "arrivees";
-			
-			vView.addObject("type", vType);
-		
-		}else {
-		
-			vView.addObject("error", "Requête invalide !");
-			
+			vView.addObject("courses", courseService.getDeparts(aGare));
+			vView.addObject("gare", aGare);
+			vView.addObject("type", aType);
 		}
-		
 		return vView;
-        
 	}
 		
 }
