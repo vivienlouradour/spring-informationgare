@@ -9,30 +9,35 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class CourseController {
 
-	private static String templates = "src/main/ressources/";
-
 	@Autowired
 	private CourseService courseService;
 
-	@RequestMapping("/arrivees/{gare}")
-	public ModelAndView getArrivees(@PathVariable String gare) {
-		ModelAndView vView = new ModelAndView("arriveesView");
-        vView.addObject("courses", courseService.getArrivees(gare));
-        return vView;
-	}
-	
-	@RequestMapping("/departs/{gare}")
-	public ModelAndView getDeparts(String gare) {
-		ModelAndView vView = new ModelAndView("departsView");
-        vView.addObject("courses", courseService.getDeparts(gare));
-        return vView;
+	@RequestMapping("/{type}/{gare}")
+	public ModelAndView getCourse(@PathVariable String type, @PathVariable String gare) {
+		
+		ModelAndView vView = new ModelAndView("errorView");
 
+		boolean vIsDepart = type.contains("dep");
+		boolean vIsArrivee = type.contains("arr");
+		
+		if ( vIsArrivee || vIsArrivee && gare != null) {
+		
+			vView = new ModelAndView("coursesView");
+			vView.addObject("courses", courseService.getDeparts(gare));
+			vView.addObject("gare", gare);
+			
+			String vType = vIsDepart ? "departs" : "arrivees";
+			
+			vView.addObject("type", vType);
+		
+		}else {
+		
+			vView.addObject("error", "Requête invalide !");
+			
+		}
+		
+		return vView;
+        
 	}
-
-	@RequestMapping("/salut")
-	public String getSalut() {
-		return "salut cedric";
-
-	}
-	
+		
 }
