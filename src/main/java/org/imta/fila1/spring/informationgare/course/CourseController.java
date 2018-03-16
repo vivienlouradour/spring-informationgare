@@ -20,7 +20,7 @@ public class CourseController {
 		boolean vIsDepart = type.contains("dep");
 		boolean vIsArrivee = type.contains("arr");
 		
-		if ( vIsArrivee || vIsArrivee && gare != null) {
+		if ( vIsDepart || vIsArrivee && gare != null) {
 		
 			vView = new ModelAndView("coursesView");
 			vView.addObject("courses", courseService.getDeparts(gare));
