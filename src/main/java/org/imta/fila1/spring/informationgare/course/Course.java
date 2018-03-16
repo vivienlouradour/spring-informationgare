@@ -30,15 +30,20 @@ public class Course {
 		this.listSillons = listSillons;
 		this.listPassages = listPassages;
 
-		SimpleDateFormat vFormat = new SimpleDateFormat("hh:mm:ss");
+		SimpleDateFormat vFormat = new SimpleDateFormat("HH'h'mm");
 		Date vDepart = new Date(getPassageDepart().getTimestamp().getTime());
 		Date vArrivee = new Date(getPassageArrivee().getTimestamp().getTime());
 		
 		this.heureDepart = vFormat.format(vDepart);
 		this.heureArrivee = vFormat.format(vArrivee);
 		
-		this.gareDepart = getPassageDepart().getPoiPassage().getNomPOI();
-		this.gareArrivee = getPassageArrivee().getPoiPassage().getNomPOI();
+		this.gareDepart = formatNomGare(getPassageDepart().getPoiPassage().getNomPOI());
+		this.gareArrivee = formatNomGare(getPassageArrivee().getPoiPassage().getNomPOI());
+		
+	}
+	
+	public String formatNomGare(String aGare) {
+		return aGare.substring(0,1).toUpperCase() + aGare.substring(1).toLowerCase();
 	}
 
 	// Getters - Setters

@@ -2,7 +2,7 @@ package org.imta.fila1.spring.informationgare.course;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -19,14 +19,24 @@ public class CourseServiceStub extends CourseService{
 		ArrayList<Sillon> vSillons = new ArrayList<>();
 		ArrayList<Passage> vPassages = new ArrayList<>();
 		ArrayList<POI> vPois = new ArrayList<>();
+		Calendar vCalendar = Calendar.getInstance();
 		
-		POI vPoi = new POI(1, true, "cholet");
-		vPois.add(vPoi);
-		vPois.add(new POI(2, true, "nantes"));
-		vPois.add(new POI(3, true, "paris"));
+		POI vDepart = new POI(1, true, "cholet");
+		POI vArret = new POI(2, true, "nantes");
+		POI vArrivee = new POI(3, true, "paris");
+		
+		vPois.add(vDepart);
+		vPois.add(vArret);
+		vPois.add(vArrivee);
 		
 		vSillons.add(new Sillon(1, vPois));
-		vPassages.add(new Passage(new Timestamp(new Date().getTime()), 1, vPoi));
+		
+		vPassages.add(new Passage(new Timestamp(vCalendar.getTimeInMillis()), 1, vDepart));
+		vCalendar.add(Calendar.HOUR_OF_DAY, 1);
+		vPassages.add(new Passage(new Timestamp(vCalendar.getTimeInMillis()), 2, vArret));
+		vCalendar.add(Calendar.HOUR_OF_DAY, 1);
+		vPassages.add(new Passage(new Timestamp(vCalendar.getTimeInMillis()), 3, vArrivee));
+		
 		
 		courses.add(new Course(1, 1, vSillons, vPassages));
 		

@@ -16,7 +16,7 @@ public class POI {
 		
 		this.idPOI = id;
 		this.isGare = isGare;
-		this.nomPOI = nomPOI;
+		this.nomPOI = nomPOI.toLowerCase();
 	}
 
 	// Getters - Setters
