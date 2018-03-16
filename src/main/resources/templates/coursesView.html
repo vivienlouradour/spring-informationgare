@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:if="${type == 'departs'}" th:text="'Départs de ' + ${gare}" ></title>
+    <title th:if="${type == 'arrivees'}" th:text="'Arrivées de ' + ${gare}"></title>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}" />
+    <script src="../static/js/clock.js" th:src="@{/js/clock.js}"></script>
+</head>
+<body onload="startTime()">
+
+<table class="table" th:classappend="${type == 'departs' ? departs : arrivees}">
+    <tr th:each="course : ${courses}">
+        <td><span class="numTrain" th:text="${course.numTrain}"></span></td>
+        <td >
+            <span class="heureDepart" th:if="${type == 'departs'}" th:text="${course.heureDepart}"></span>
+            <span class="heureDepart" th:if="${type == 'arrivees'}" th:text="${course.heureArrivee}"></span>
+        </td>
+        <td>
+            <span class="gareArrive" th:if="${type == 'departs'}" th:text="${course.gareArrive}"></span>
+            <span class="gareArrive" th:if="${type == 'arrivees'}" th:text="${course.gareDepart}"></span>
+        </td>
+    </tr>
+</table>
+
+<div id="clock"></div>
+
+<span class="depart" th:if="${type == 'departs'}">départs</span>
+<span class="depart" th:if="${type == 'arrivees'}">arrivées</span>
+
+</body>
+</html>

@@ -2,11 +2,19 @@
     width: 100%;
 }
 
-.table tr:nth-child(2n) {
+.table.departs tr:nth-child(2n) {
     background-color: #014E9E;
 }
 
-.table tr:nth-child(2n+1) {
+.table.departs tr:nth-child(2n+1) {
+    background-color: #03196C;
+}
+
+.table.departs tr:nth-child(2n) {
+    background-color: #014E9E;
+}
+
+.table.departs tr:nth-child(2n+1) {
     background-color: #03196C;
 }
 
