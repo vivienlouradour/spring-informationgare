@@ -1,0 +1,57 @@
+.table {
+    width: 100%;
+}
+
+.table tr:nth-child(2n) {
+    background-color: #014E9E;
+}
+
+.table tr:nth-child(2n+1) {
+    background-color: #03196C;
+}
+
+td:nth-child(1) {
+    width: 10%;
+}
+
+td:nth-child(2) {
+    width: 15%;
+}
+
+td:nth-child(3) {
+    width: 75%;
+}
+
+.numTrain, .heureDepart, gareArrive {
+    margin-right: 20px;
+}
+
+.numTrain {
+    color: white;
+    font-size: 22px;
+}
+
+.heureDepart {
+    color: #ffe563;
+}
+
+.gareArrive {
+    color: white;
+    font-weight: bold;
+}
+
+.depart {
+    font-size: 130px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #334AD4;
+    transform: translate(25%, -100%) rotate(-90deg);
+}
+
+#clock {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}

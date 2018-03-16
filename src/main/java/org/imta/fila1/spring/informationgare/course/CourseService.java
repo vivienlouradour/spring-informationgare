@@ -1,4 +1,4 @@
-package imta.fila1.spring.informationgare.modele;
+package org.imta.fila1.spring.informationgare.course;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,23 +14,18 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CourseService {
-	
-	@Autowired
-	private CourseRepository courseRepository;
+
+	private CourseRepository courseRepository = new SimpleCourseRepository();
 
 	public List<Course> getCourses() {
-		
-		ArrayList<Course> courses = new ArrayList<>();
-		for (Course c: courseRepository.findAll()) {
-			courses.add(c);
-		}
-		return courses;
+
+		return courseRepository.getCourses();
 	}
 	
 	public List<Course> getDeparts(String aGare) {
 		
 		ArrayList<Course> vDeparts = new ArrayList<>();
-		for (Course vCourse: courseRepository.findAll()) {
+		for (Course vCourse: courseRepository.getCourses()) {
 			if (vCourse.isGareDepart(aGare)) {
 				vDeparts.add(vCourse);				
 			}
@@ -41,7 +36,7 @@ public class CourseService {
 	public List<Course> getArrivees(String aGare) {
 		
 		ArrayList<Course> vDeparts = new ArrayList<>();
-		for (Course vCourse: courseRepository.findAll()) {
+		for (Course vCourse: courseRepository.getCourses()) {
 			if (vCourse.isGareArrivee(aGare)) {
 				vDeparts.add(vCourse);				
 			}
@@ -49,24 +44,24 @@ public class CourseService {
 		return vDeparts;
 	}
 
-	public Course getCourse(String id) {	
-		
-		return courseRepository.findOne(id);
-	}
+//	public Course getCourse(String id) {
+//
+//		return courseRepository.findOne(id);
+//	}
 
 	public void addCourse(Course course) {
 		
-		courseRepository.save(course);		
+		courseRepository.addCourse(course);
 	}
 
-	public void updateCourse(Course course) {
-		
-		courseRepository.save(course);
-	}
-
-	public void deleteCourse(String id) {
-		
-		courseRepository.delete(id);		
-	}
+//	public void updateCourse(Course course) {
+//
+//		courseRepository.save(course);
+//	}
+//
+//	public void deleteCourse(String id) {
+//
+//		courseRepository.delete(id);
+//	}
 }
 

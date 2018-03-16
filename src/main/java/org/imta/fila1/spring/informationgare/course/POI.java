@@ -1,4 +1,4 @@
-package imta.fila1.spring.informationgare.modele;
+package org.imta.fila1.spring.informationgare.course;
 
 /**
  * Classe des points d'intérêts présents sur un sillon

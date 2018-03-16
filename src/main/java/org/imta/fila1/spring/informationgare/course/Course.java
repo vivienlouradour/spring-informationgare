@@ -1,7 +1,6 @@
-package imta.fila1.spring.informationgare.modele;
+package org.imta.fila1.spring.informationgare.course;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 /**
  * Classe de définition des courses
