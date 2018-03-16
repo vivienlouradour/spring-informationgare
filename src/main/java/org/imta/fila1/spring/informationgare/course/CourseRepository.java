@@ -1,7 +1,5 @@
 package org.imta.fila1.spring.informationgare.course;
 
-import org.springframework.data.repository.CrudRepository;
-
 import java.util.ArrayList;
 
 /**

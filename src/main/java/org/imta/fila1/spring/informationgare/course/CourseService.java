@@ -12,16 +12,11 @@ import org.springframework.stereotype.Service;
  * @author Cédric GARCIA
  *
  */
-@Service
+//@Service
 public class CourseService {
 
 	private CourseRepository courseRepository = new SimpleCourseRepository();
 
-	public List<Course> getCourses() {
-
-		return courseRepository.getCourses();
-	}
-	
 	public List<Course> getDeparts(String aGare) {
 		
 		ArrayList<Course> vDeparts = new ArrayList<>();

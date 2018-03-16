@@ -17,6 +17,8 @@ public class Course {
 	private int numTrain;
 	private String heureDepart;
 	private String heureArrivee;
+	private String gareArrivee;
+	private String gareDepart;
 	
 	private ArrayList<Sillon> listSillons;
 	private ArrayList<Passage> listPassages;
@@ -34,6 +36,9 @@ public class Course {
 		
 		this.heureDepart = vFormat.format(vDepart);
 		this.heureArrivee = vFormat.format(vArrivee);
+		
+		this.gareDepart = getPassageDepart().getPoiPassage().getNomPOI();
+		this.gareArrivee = getPassageArrivee().getPoiPassage().getNomPOI();
 	}
 
 	// Getters - Setters
@@ -82,7 +87,7 @@ public class Course {
 	}
 	
 	public Passage getPassageArrivee() {
-		return getListPassages().get(getListPassages().size());
+		return getListPassages().get(getListPassages().size()-1);
 	}
 	
 	public boolean isGareDepart(String aGare) {
@@ -92,6 +97,40 @@ public class Course {
 	public boolean isGareArrivee(String aGare) {
 		return getPassageArrivee().getPoiPassage().getNomPOI().equals(aGare);
 	}
+	
+	public String getHeureDepart() {
+		return heureDepart;
+	}
+
+	public void setHeureDepart(String heureDepart) {
+		this.heureDepart = heureDepart;
+	}
+
+	public String getHeureArrivee() {
+		return heureArrivee;
+	}
+
+	public void setHeureArrivee(String heureArrivee) {
+		this.heureArrivee = heureArrivee;
+	}
+	
+	public String getGareArrivee() {
+		return gareArrivee;
+	}
+
+	public void setGareArrivee(String gareArrivee) {
+		this.gareArrivee = gareArrivee;
+	}
+	
+
+	public String getGareDepart() {
+		return gareDepart;
+	}
+
+	public void setGareDepart(String gareDepart) {
+		this.gareDepart = gareDepart;
+	}
+
 	
 }
 
