@@ -6,7 +6,9 @@ function startTime() {
     var s = today.getSeconds();
     m = checkTime(m);
     s = checkTime(s);
-    document.getElementById('clock').innerHTML = h + ":" + m + ":" + s;
+    document.getElementById('hours').innerHTML = h;
+    document.getElementById('minutes').innerHTML = m;
+    document.getElementById('seconds').innerHTML = s;
     var t = setTimeout(startTime, 500);
 }
 
