@@ -9,7 +9,7 @@
     <script src="../static/js/marquee.js" th:src="@{/js/marquee.js}"></script>
 
 </head>
-<body onload="startTime()">
+<body onload="startTime()" th:classappend="${type == 'departs' ? 'departsBody' : 'arriveesBody'}">
 
 <div>
     <table class="table" th:classappend="${type == 'departs' ? 'departs' : 'arrivees'}">
@@ -26,8 +26,8 @@
         </tr>
     </table>
 
-    <span class="depart" th:if="${type == 'departs'}">départs</span>
-    <span class="depart" th:if="${type == 'arrivees'}">arrivées</span>
+    <span class="departArrivee depart" th:if="${type == 'departs'}">départs</span>
+    <span class="departArrivee arrivee" th:if="${type == 'arrivees'}">arrivées</span>
 </div>
 
 <div id="footer" th:classappend="${type == 'departs' ? 'departs' : 'arrivees'}">
@@ -37,10 +37,10 @@
         </div>
     </div>
     <div id="clock">
-        <span id="hours"></span>
+        <span id="hours">20</span>
         <span id="dot">:</span>
-        <span id="minutes"></span>
-        <span id="seconds"></span>
+        <span id="minutes">13</span>
+        <span id="seconds">34</span>
     </div>
 </div>
 
