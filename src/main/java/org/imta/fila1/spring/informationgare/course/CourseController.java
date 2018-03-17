@@ -2,10 +2,7 @@ package org.imta.fila1.spring.informationgare.course;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
@@ -35,8 +32,6 @@ public class CourseController {
             }
             vView.addObject("gare", aGare);
             vView.addObject("type", aType);
-            courseService.setActualCity(aGare);
-            courseService.setActualType(aType);
         }
         return vView;
     }
@@ -46,17 +41,16 @@ public class CourseController {
         courseService.duplicate();
     }
 
-    @RequestMapping(path = "update")
-    public ModelAndView  update() {
-        System.out.println("/" + courseService.getActualType() + "/" + courseService.getActualCity());
+    @RequestMapping(value = "/update")
+    public ModelAndView someMethod(@RequestParam("type") String type, @RequestParam("gare") String gare) {
+        System.out.println("/" + type + "/" + gare);
 
         //return new ModelAndView("coursesView :: resultsList");
 
         //model.addAttribute("courses",courseService.getDeparts(courseService.getActualCity()));
         //return "redirect:/" + courseService.getActualType() + "/" + courseService.getActualCity();
         //        return "redirect:/departs/cholet";
-        return getCourse(courseService.getActualType(), courseService.getActualCity(), "coursesView :: resultsList");
+        return getCourse(type, gare, "coursesView :: resultsList");
         //return "coursesView :: resultsList";
     }
-
 }
