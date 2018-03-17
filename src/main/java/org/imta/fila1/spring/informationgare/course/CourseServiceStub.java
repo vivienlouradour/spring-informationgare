@@ -37,9 +37,10 @@ public class CourseServiceStub extends CourseService{
 		vCalendar.add(Calendar.HOUR_OF_DAY, 1);
 		vPassages.add(new Passage(new Timestamp(vCalendar.getTimeInMillis()), 3, vArrivee));
 		
-		
-		courses.add(new Course(1, 1, vSillons, vPassages));
-		
+		Course course = new Course(1, 1, vSillons, vPassages);
+		course.setRetardArrivee(5);
+		//course.setRetardDepart(10);
+		courses.add(course);
 	}
 
 	public void duplicate() {
