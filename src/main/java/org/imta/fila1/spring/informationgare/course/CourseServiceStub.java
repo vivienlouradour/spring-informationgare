@@ -11,7 +11,10 @@ import org.springframework.stereotype.Service;
 public class CourseServiceStub extends CourseService{
 	
 	private ArrayList<Course> courses;
-	
+
+	private String actualType;
+	private String actualCity;
+
 	public CourseServiceStub(){
 		
 		courses = new ArrayList<>();
@@ -41,7 +44,11 @@ public class CourseServiceStub extends CourseService{
 		courses.add(new Course(1, 1, vSillons, vPassages));
 		
 	}
-	
+
+	public void duplicate() {
+		Course course = courses.get(0);
+		courses.add(course);
+	}
 	
 	@Override
 	public List<Course> getDeparts(String aGare) {
@@ -65,6 +72,22 @@ public class CourseServiceStub extends CourseService{
 			}
 		}
 		return vDeparts;
+	}
+
+	public String getActualType() {
+		return actualType;
+	}
+
+	public void setActualType(String actualType) {
+		this.actualType = actualType;
+	}
+
+	public String getActualCity() {
+		return actualCity;
+	}
+
+	public void setActualCity(String actualCity) {
+		this.actualCity = actualCity;
 	}
 }
 

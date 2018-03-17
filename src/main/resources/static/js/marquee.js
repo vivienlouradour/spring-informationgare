@@ -1,16 +1,30 @@
 
 $(document).ready(function() {
-    var marquee = $('div.marquee');
-    console.log(marquee);
-    marquee.each(function() {
-        var mar = $(this),indent = mar.width();
-        mar.marquee = function() {
-            indent--;
-            mar.css('text-indent',indent);
-            if (indent < -1 * mar.children('div.marquee-text').width()) {
-                indent = mar.width();
-            }
-        };
-        mar.data('interval',setInterval(mar.marquee,1000/120));
+    $('.marquee').marquee({
+        //duration in milliseconds of the marquee
+        duration: 5000,
+        //gap in pixels between the tickers
+        gap: 50,
+        //time in milliseconds before the marquee will start animating
+        delayBeforeStart: 0,
+        //'left' or 'right'
+        direction: 'left',
+        //true or false - should the marquee be duplicated to show an effect of continues flow
+        duplicated: false,
+        pauseOnHover: true
     });
+
+    $("button").click(function(e) {
+        console.log("BOUTON CLIQUE");
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/testAdd"
+        });
+    });
+
+    setInterval(function(){
+        $('#resultsList').load('/update');
+    },1000);
 });
+

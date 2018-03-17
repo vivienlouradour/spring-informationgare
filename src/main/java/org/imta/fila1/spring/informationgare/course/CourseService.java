@@ -17,10 +17,29 @@ public class CourseService {
 
 	private CourseRepository courseRepository = new SimpleCourseRepository();
 
+	private String actualType;
+	private String actualCity;
+
+	public String getActualType() {
+		return actualType;
+	}
+
+	public void setActualType(String actualType) {
+		this.actualType = actualType;
+	}
+
+	public String getActualCity() {
+		return actualCity;
+	}
+
+	public void setActualCity(String actualCity) {
+		this.actualCity = actualCity;
+	}
+
 	public List<Course> getDeparts(String aGare) {
 		
 		ArrayList<Course> vDeparts = new ArrayList<>();
-		for (Course vCourse: courseRepository.getCourses()) {
+		for (Course vCourse: courseRepository.findAll()) {
 			if (vCourse.isGareDepart(aGare)) {
 				vDeparts.add(vCourse);				
 			}
@@ -31,7 +50,7 @@ public class CourseService {
 	public List<Course> getArrivees(String aGare) {
 		
 		ArrayList<Course> vDeparts = new ArrayList<>();
-		for (Course vCourse: courseRepository.getCourses()) {
+		for (Course vCourse: courseRepository.findAll()) {
 			if (vCourse.isGareArrivee(aGare)) {
 				vDeparts.add(vCourse);				
 			}
@@ -45,8 +64,7 @@ public class CourseService {
 //	}
 
 	public void addCourse(Course course) {
-		
-		courseRepository.addCourse(course);
+		courseRepository.add(course);
 	}
 
 //	public void updateCourse(Course course) {
@@ -58,5 +76,10 @@ public class CourseService {
 //
 //		courseRepository.delete(id);
 //	}
+
+	public void duplicate() {
+		Course course = courseRepository.findAll().get(0);
+		courseRepository.findAll().add(course);
+	}
 }
 

@@ -1,18 +1,19 @@
 package org.imta.fila1.spring.informationgare.course;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SimpleCourseRepository implements CourseRepository {
 
-    private ArrayList<Course> courses = new ArrayList<>();
+    private final List<Course> courses = new ArrayList<Course>();
 
     @Override
-    public ArrayList<Course> getCourses() {
-        return courses;
+    public List<Course> findAll() {
+        return new ArrayList<Course>(this.courses);
     }
 
     @Override
-    public void addCourse(Course course) {
-        courses.add(course);
+    public void add(final Course course) {
+        this.courses.add(course);
     }
 }
