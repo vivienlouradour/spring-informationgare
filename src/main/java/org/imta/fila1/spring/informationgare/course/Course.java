@@ -19,7 +19,9 @@ public class Course {
 	private String heureArrivee;
 	private String gareArrivee;
 	private String gareDepart;
-	
+	private int retardArrivee; //Retard à l'arrivée en minutes*
+	private int retardDepart; //Retard au départ en minutes
+
 	private ArrayList<Sillon> listSillons;
 	private ArrayList<Passage> listPassages;
 	
@@ -39,7 +41,9 @@ public class Course {
 		
 		this.gareDepart = formatNomGare(getPassageDepart().getPoiPassage().getNomPOI());
 		this.gareArrivee = formatNomGare(getPassageArrivee().getPoiPassage().getNomPOI());
-		
+
+		this.retardArrivee = 0;
+		this.retardDepart = 0;
 	}
 	
 	public String formatNomGare(String aGare) {
@@ -136,6 +140,36 @@ public class Course {
 		this.gareDepart = gareDepart;
 	}
 
-	
+	public void setRetardArrivee(int retardArriveeEnMn){
+		this.retardArrivee= retardArriveeEnMn;
+	}
+
+	public int getRetardDepart() {
+		return retardDepart;
+	}
+
+	public void setRetardDepart(int retardDepart) {
+		this.retardDepart = retardDepart;
+	}
+
+	public int getRetardArrivee(){
+		return this.retardArrivee;
+	}
+
+	public boolean estEnRetardDepart(){
+		return this.retardDepart > 0;
+	}
+
+	public boolean estEnRetardArrivee(){
+		return this.retardArrivee > 0;
+	}
+
+	public String getDepartRetardMessage(){
+		return estEnRetardDepart() ? ("Retard : " + getRetardDepart() + " min") : "A l'heure";
+	}
+
+	public String getArriveeRetardMessage(){
+		return estEnRetardArrivee() ? ("Retard : " + getRetardArrivee() + " min") : "A l'heure";
+	}
 }
 

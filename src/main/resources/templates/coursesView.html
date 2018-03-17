@@ -25,6 +25,10 @@
                 <span class="gareArrive" th:if="${type == 'departs'}" th:text="${course.gareArrivee}"></span>
                 <span class="gareArrive" th:if="${type == 'arrivees'}" th:text="${course.gareDepart}"></span>
             </td>
+            <td>
+                <span class="retard" th:if="${type == 'arrivees'}"  th:text="${course.getArriveeRetardMessage()}"></span>
+                <span class="retard" th:if="${type == 'departs'}"  th:text="${course.getDepartRetardMessage()}"></span>
+            </td>
         </tr>
     </table>
 
