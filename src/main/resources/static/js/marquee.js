@@ -13,18 +13,5 @@ $(document).ready(function() {
         duplicated: false,
         pauseOnHover: true
     });
-
-    $("button").click(function(e) {
-        console.log("BOUTON CLIQUE");
-        e.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: "/testAdd"
-        });
-    });
-
-    setInterval(function(){
-        $('#resultsList').load('/update');
-    },1000);
 });
 

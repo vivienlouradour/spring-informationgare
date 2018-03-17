@@ -18,25 +18,6 @@ public class CourseService {
 	// @Autowired
 	// CourseRepository courseRepository;
 
-	private String actualType;
-	private String actualCity;
-
-	public String getActualType() {
-		return actualType;
-	}
-
-	public void setActualType(String actualType) {
-		this.actualType = actualType;
-	}
-
-	public String getActualCity() {
-		return actualCity;
-	}
-
-	public void setActualCity(String actualCity) {
-		this.actualCity = actualCity;
-	}
-
 	public List<Course> getDeparts(String aGare) {
 
 		ArrayList<Course> vDeparts = new ArrayList<>();

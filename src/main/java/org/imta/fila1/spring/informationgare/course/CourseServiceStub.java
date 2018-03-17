@@ -13,8 +13,8 @@ public class CourseServiceStub extends CourseService {
 	private String actualType;
 	private String actualCity;
 
-	public CourseServiceStub() {
-
+	public CourseServiceStub(){
+		
 		courses = new ArrayList<>();
 
 		ArrayList<Sillon> vSillons = new ArrayList<>();
@@ -69,21 +69,5 @@ public class CourseServiceStub extends CourseService {
 			}
 		}
 		return vDeparts;
-	}
-
-	public String getActualType() {
-		return actualType;
-	}
-
-	public void setActualType(String actualType) {
-		this.actualType = actualType;
-	}
-
-	public String getActualCity() {
-		return actualCity;
-	}
-
-	public void setActualCity(String actualCity) {
-		this.actualCity = actualCity;
 	}
 }

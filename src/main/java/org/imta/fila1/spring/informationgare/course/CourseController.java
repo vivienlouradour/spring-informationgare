@@ -4,58 +4,56 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 public class CourseController {
 
-	@Autowired
-	private CourseService courseService;
+    @Autowired
+    private CourseService courseService;
 
-	@RequestMapping("/departs/{gare}")
-	public ModelAndView getDeparts(@PathVariable String gare) {
-		return getCourse("departs", gare, "coursesView");
-	}
+    @RequestMapping("/departs/{gare}")
+    public ModelAndView getDeparts(@PathVariable String gare) {
+        return getCourse("departs", gare, "coursesView");
+    }
 
-	@RequestMapping("/arrivees/{gare}")
-	public ModelAndView getArrivees(@PathVariable String gare) {
-		return getCourse("arrivees", gare, "coursesView");
-	}
+    @RequestMapping("/arrivees/{gare}")
+    public ModelAndView getArrivees(@PathVariable String gare) {
+        return getCourse("arrivees", gare, "coursesView");
+    }
 
-	public ModelAndView getCourse(String aType, String aGare, String template) {
-		ModelAndView vView = new ModelAndView("errorView");
-		if (aGare != null) {
-			vView = new ModelAndView(template);
-			if (aType.equals("departs")) {
-				vView.addObject("courses", courseService.getDeparts(aGare));
-			} else {
-				vView.addObject("courses", courseService.getArrivees(aGare));
-			}
-			vView.addObject("gare", aGare);
-			vView.addObject("type", aType);
-			courseService.setActualCity(aGare);
-			courseService.setActualType(aType);
-		}
-		return vView;
-	}
+    public ModelAndView getCourse(String aType, String aGare, String template) {
+        ModelAndView vView = new ModelAndView("errorView");
+        if (aGare != null) {
+            vView = new ModelAndView(template);
+            if (aType.equals("departs")) {
+                vView.addObject("courses", courseService.getDeparts(aGare));
+            } else {
+                vView.addObject("courses", courseService.getArrivees(aGare));
+            }
+            vView.addObject("gare", aGare);
+            vView.addObject("type", aType);
+        }
+        return vView;
+    }
 
-	@RequestMapping(path = "testAdd")
-	public void testAdd() {
-		courseService.duplicate();
-	}
+    @RequestMapping(path = "testAdd")
+    public void testAdd() {
+        courseService.duplicate();
+    }
 
-	@RequestMapping(path = "update")
-	public ModelAndView update() {
-		System.out.println("/" + courseService.getActualType() + "/" + courseService.getActualCity());
-		System.out.println("Nombre d'entrées dans le repo : " + courseService.countEntries());
-		// return new ModelAndView("coursesView :: resultsList");
+    @RequestMapping(value = "/update")
+    public ModelAndView someMethod(@RequestParam("type") String type, @RequestParam("gare") String gare) {
+        System.out.println("/" + type + "/" + gare);
 
-		// model.addAttribute("courses",courseService.getDeparts(courseService.getActualCity()));
-		// return "redirect:/" + courseService.getActualType() + "/" +
-		// courseService.getActualCity();
-		// return "redirect:/departs/cholet";
-		return getCourse(courseService.getActualType(), courseService.getActualCity(), "coursesView :: resultsList");
-		// return "coursesView :: resultsList";
-	}
+        //return new ModelAndView("coursesView :: resultsList");
 
+        //model.addAttribute("courses",courseService.getDeparts(courseService.getActualCity()));
+        //return "redirect:/" + courseService.getActualType() + "/" + courseService.getActualCity();
+        //        return "redirect:/departs/cholet";
+        return getCourse(type, gare, "coursesView :: resultsList");
+        //return "coursesView :: resultsList";
+    }
 }
