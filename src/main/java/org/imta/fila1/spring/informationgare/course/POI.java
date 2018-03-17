@@ -1,4 +1,4 @@
-package imta.fila1.spring.informationgare.modele;
+package org.imta.fila1.spring.informationgare.course;
 
 /**
  * Classe des points d'intérêts présents sur un sillon
@@ -16,7 +16,7 @@ public class POI {
 
 		this.idPOI = idPOI;
 		this.isGare = isGare;
-		this.nomPOI = nomPOI;
+		this.nomPOI = nomPOI.toLowerCase();
 	}
 
 	public POI() {

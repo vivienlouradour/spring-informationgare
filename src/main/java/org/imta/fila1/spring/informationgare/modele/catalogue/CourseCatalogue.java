@@ -1,21 +1,26 @@
-package imta.fila1.spring.informationgare.modele;
+package org.imta.fila1.spring.informationgare.modele.catalogue;
 
 import java.util.ArrayList;
 
+import org.imta.fila1.spring.informationgare.course.POI;
+import org.imta.fila1.spring.informationgare.course.Passage;
+import org.imta.fila1.spring.informationgare.course.Sillon;
+
 /**
- * Classe de définition des courses
  * 
- * @author Cédric GARCIA
+ * @category Nous avons besoin de cette classe car c'est cet objet qui sera
+ *           envoyé par l'équipe catalogue Nous allons donc l'utiliser pour
+ *           désérialiser le JSON puis créer l'objet course qui nous intéresse.
  *
  */
-public class Course {
+public class CourseCatalogue {
 
 	private int idCourse;
 	private int numTrain;
 	private ArrayList<Sillon> listSillons;
 	private ArrayList<Passage> listPassages;
 
-	public Course(int idCourse, int numTrain, ArrayList<Sillon> listSillons, ArrayList<Passage> listPassages) {
+	public CourseCatalogue(int idCourse, int numTrain, ArrayList<Sillon> listSillons, ArrayList<Passage> listPassages) {
 
 		this.idCourse = idCourse;
 		this.numTrain = numTrain;
@@ -23,7 +28,7 @@ public class Course {
 		this.listPassages = listPassages;
 	}
 
-	public Course() {
+	public CourseCatalogue() {
 	}
 
 	// Getters - Setters

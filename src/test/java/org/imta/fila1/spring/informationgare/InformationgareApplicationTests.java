@@ -1,4 +1,4 @@
-package imta.fila1.spring.informationgare;
+package org.imta.fila1.spring.informationgare;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,25 +1,30 @@
 package org.emn.messageBroker;
 
 import java.io.IOException;
+import java.util.concurrent.LinkedTransferQueue;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.imta.fila1.spring.informationgare.converter.CatalogueToCourseConverter;
+import org.imta.fila1.spring.informationgare.modele.catalogue.CourseCatalogue;
 
-import imta.fila1.spring.informationgare.modele.Course;
-import imta.fila1.spring.informationgare.modele.CourseService;
+/**
+ * Ecoute kafka, récupère les données au format JSON, les désérialise puis les
+ * transfere pour conversion.
+ * 
+ * @see CatalogueToCourseConverter
+ * 
+ * @author valentin
+ *
+ */
 
 public class CatalogueConsumer extends MessageConsumer {
 
-	@Autowired
-	private CourseService courseService;
+	LinkedTransferQueue<CourseCatalogue> queue;
 
-	public CatalogueConsumer(String topic) {
-		super(topic);
-	}
-
-	public CatalogueConsumer() {
+	public CatalogueConsumer(LinkedTransferQueue<CourseCatalogue> catalogueTransferQueue) {
 		super("Catalogue");
+		this.queue = catalogueTransferQueue;
 	}
 
 	public void listen() {
@@ -29,11 +34,8 @@ public class CatalogueConsumer extends MessageConsumer {
 				// print the offset,key and value for the consumer records.
 				System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value());
 				try {
-					Course obj = mapper.readValue(record.value(), Course.class);
-					System.out.println(obj);
-					courseService.addCourse(obj);
-					System.out.println("Ajout de la course OK");
-
+					CourseCatalogue obj = mapper.readValue(record.value(), CourseCatalogue.class);
+					queue.add(obj);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
