@@ -23,6 +23,9 @@ public class Course {
 		this.listPassages = listPassages;
 	}
 
+	public Course() {
+	}
+
 	// Getters - Setters
 	public int getIdCourse() {
 

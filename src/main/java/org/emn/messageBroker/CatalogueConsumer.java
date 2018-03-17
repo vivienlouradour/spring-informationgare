@@ -24,15 +24,16 @@ public class CatalogueConsumer extends MessageConsumer {
 
 	public void listen() {
 		while (true) {
-			ConsumerRecords<String, String> records = consumer.poll(100);
+			ConsumerRecords<String, String> records = consumer.poll(1);
 			for (ConsumerRecord<String, String> record : records) {
 				// print the offset,key and value for the consumer records.
 				System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value());
 				try {
-					System.out.println(record.value());
 					Course obj = mapper.readValue(record.value(), Course.class);
+					System.out.println(obj);
 					courseService.addCourse(obj);
 					System.out.println("Ajout de la course OK");
+
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
