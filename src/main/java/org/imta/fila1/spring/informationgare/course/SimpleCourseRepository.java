@@ -5,15 +5,20 @@ import java.util.List;
 
 public class SimpleCourseRepository implements CourseRepository {
 
-    private final List<Course> courses = new ArrayList<Course>();
+	private final List<Course> courses = new ArrayList<Course>();
 
-    @Override
-    public List<Course> findAll() {
-        return new ArrayList<Course>(this.courses);
-    }
+	@Override
+	public List<Course> findAll() {
+		return new ArrayList<Course>(this.courses);
+	}
 
-    @Override
-    public void add(final Course course) {
-        this.courses.add(course);
-    }
+	@Override
+	public void add(final Course course) {
+		this.courses.add(course);
+	}
+
+	@Override
+	public int countEntries() {
+		return this.courses.size();
+	}
 }

@@ -11,42 +11,45 @@ public class POI {
 	private int idPOI;
 	private boolean isGare;
 	private String nomPOI;
-	
-	public POI(int id, boolean isGare, String nomPOI) {
-		
-		this.idPOI = id;
+
+	public POI(int idPOI, boolean isGare, String nomPOI) {
+
+		this.idPOI = idPOI;
 		this.isGare = isGare;
 		this.nomPOI = nomPOI.toLowerCase();
 	}
 
+	public POI() {
+	}
+
 	// Getters - Setters
-	public int getId() {
-		
+	public int getIdPOI() {
+
 		return idPOI;
 	}
 
-	public void setId(int id) {
-		
+	public void setIdPOI(int id) {
+
 		this.idPOI = id;
 	}
 
-	public boolean isGare() {
-		
+	public boolean getIsGare() {
+
 		return isGare;
 	}
 
-	public void setGare(boolean isGare) {
-		
+	public void setIsGare(boolean isGare) {
+
 		this.isGare = isGare;
 	}
 
 	public String getNomPOI() {
-		
+
 		return nomPOI;
 	}
 
 	public void setNomPOI(String nomPOI) {
-		
+
 		this.nomPOI = nomPOI;
 	}
 }
