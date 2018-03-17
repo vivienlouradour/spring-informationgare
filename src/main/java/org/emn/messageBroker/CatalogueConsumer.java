@@ -34,8 +34,13 @@ public class CatalogueConsumer extends MessageConsumer {
 				// print the offset,key and value for the consumer records.
 				System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value());
 				try {
-					CourseCatalogue obj = mapper.readValue(record.value(), CourseCatalogue.class);
-					queue.add(obj);
+					// CourseCatalogue obj = mapper.readValue(record.value(),
+					// CourseCatalogue.class);
+					// queue.add(obj);
+					CourseCatalogue[] obj = mapper.readValue(record.value(), CourseCatalogue[].class);
+					for (CourseCatalogue course : obj) {
+						queue.add(course);
+					}
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
