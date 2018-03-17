@@ -11,6 +11,7 @@ html, body {
 
 .table {
     width: 100%;
+    position: absolute;
 }
 
 table, th, td {

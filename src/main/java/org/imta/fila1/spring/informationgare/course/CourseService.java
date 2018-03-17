@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * @author Cédric GARCIA
  *
  */
-@Service
+//@Service
 public class CourseService {
 
 	public static CourseRepository courseRepository = new SimpleCourseRepository();

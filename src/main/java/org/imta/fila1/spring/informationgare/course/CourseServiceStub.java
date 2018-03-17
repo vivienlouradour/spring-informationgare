@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-//@Service
+import org.springframework.stereotype.Service;
+
+@Service
 public class CourseServiceStub extends CourseService {
 
 	private ArrayList<Course> courses;

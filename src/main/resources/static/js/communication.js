@@ -1,5 +1,6 @@
-
 $(document).ready(function() {
+	
+	var refreshInterval = setInterval(ajaxInterval(), 10000);
 
     var currentLocation = window.location.pathname;
     var currentLocationSplit = currentLocation.split('/');
@@ -14,9 +15,14 @@ $(document).ready(function() {
             url: "/testAdd"
         });
     });
-
-    setInterval(function(){
-        $('#resultsList').load('/update',{type:type, gare:gare});
-    },1000);
+    
+    function ajaxInterval() {
+    	
+    	$('#resultsList').load('/update',{type:type, gare:gare});
+    }
+    
+    setInterval(function() {
+    	clearInterval(refreshInterval);
+    	slider();
+    }, 10000);
 });
-
