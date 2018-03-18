@@ -27,6 +27,10 @@ public class CourseServiceStub extends CourseService {
 		this.addCourse();
 	}
 
+	public void addRetardDepart() {
+		this.courses.get(0).setRetardDepart(10);
+	}
+
 	@Override
 	public List<Course> getDeparts(String aGare) {
 
@@ -68,14 +72,14 @@ public class CourseServiceStub extends CourseService {
 
 		vSillons.add(new Sillon(1, vPois));
 
-		vPassages.add(new Passage(new Timestamp(vCalendar.getTimeInMillis()), 1, vDepart));
+		vPassages.add(new Passage(new Timestamp(vCalendar.getTimeInMillis() + 2*60*60*1000), 1, vDepart));
 		vCalendar.add(Calendar.HOUR_OF_DAY, 1);
-		vPassages.add(new Passage(new Timestamp(vCalendar.getTimeInMillis()), 2, vArret));
+		vPassages.add(new Passage(new Timestamp(vCalendar.getTimeInMillis() + 3*60*60*1000), 2, vArret));
 		vCalendar.add(Calendar.HOUR_OF_DAY, 1);
-		vPassages.add(new Passage(new Timestamp(vCalendar.getTimeInMillis()), 3, vArrivee));
+		vPassages.add(new Passage(new Timestamp(vCalendar.getTimeInMillis() + 4*60*60*1000), 3, vArrivee));
 
 		Course course = new Course(1, this.compteur, vSillons, vPassages);
-		course.setRetardArrivee(5);
+		//course.setRetardArrivee(5);
 		//course.setRetardDepart(10);
 		courses.add(course);
 

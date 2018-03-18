@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class CourseController {
 
     @Autowired
-    private CourseService courseService;
+    private CourseServiceStub courseService;
 
     @RequestMapping("/departs/{gare}")
     public ModelAndView getDeparts(@PathVariable String gare) {
@@ -42,6 +42,11 @@ public class CourseController {
     @RequestMapping(path = "testAdd")
     public void testAdd() {
         courseService.duplicate();
+    }
+
+    @RequestMapping(path = "testAddRetard")
+    public void testAddRetard() {
+        courseService.addRetardDepart();
     }
 
     @RequestMapping(value = "/update")
