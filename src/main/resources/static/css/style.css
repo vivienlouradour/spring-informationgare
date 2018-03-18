@@ -1,7 +1,7 @@
 html, body {
     margin: 0;
     padding: 0;
-    font-family: "Ubuntu", "Arial";
+    font-family: 'Roboto',"Ubuntu", "Arial";
     font-size: 80px;
     overflow: hidden;
 }
@@ -35,7 +35,7 @@ table, th, td {
 }
 
 td:nth-child(1) {
-    width: 10%;
+    width: 9%;
     padding-left: 10px;
 }
 
@@ -44,7 +44,11 @@ td:nth-child(2) {
 }
 
 td:nth-child(3) {
-    width: 75%;
+    width: 56%;
+}
+
+td:nth-child(4) {
+    width: 20%;
 }
 
 .numTrain, .heureDepart, gareArrive {
@@ -75,7 +79,7 @@ td:nth-child(3) {
 }
 
 .depart {
-    color: #334AD4;
+    color: #176cbf;
 }
 
 .arrivee {
