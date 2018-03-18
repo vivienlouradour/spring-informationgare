@@ -6,6 +6,8 @@ $(document).ready(function () {
     var gare = currentLocationSplit[2];
     var nbRows = $('#container').find('tr').length;
 
+    var audio = new Audio('../audio/jingleSNCF.mp3');
+
     $("button").click(function (e) {
         console.log("BOUTON CLIQUE");
         e.preventDefault();
@@ -44,6 +46,7 @@ $(document).ready(function () {
                     if(nbRows < $('#container').find('tr').length){
                         nbRows = $('#container').find('tr').length;
                         resetScroll();
+                        audio.play();
                     }
                 }
             });
