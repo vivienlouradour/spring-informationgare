@@ -41,13 +41,13 @@ $(document).ready(function () {
         $('#container').load('/update',{type:type, gare:gare},
             function (responseText, textStatus, XMLHttpRequest) {
                 if (textStatus == "success") {
-
+                    if(nbRows < $('#container').find('tr').length){
+                        nbRows = $('#container').find('tr').length;
+                        resetScroll();
+                    }
                 }
             });
-        if(nbRows < $('#container').find('tr').length){
-            nbRows = $('#container').find('tr').length;
-            resetScroll();
-        }
+
     },1000);
 
 });
