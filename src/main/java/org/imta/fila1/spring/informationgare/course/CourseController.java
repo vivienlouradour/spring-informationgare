@@ -46,7 +46,7 @@ public class CourseController {
 
     @RequestMapping(value = "/update")
     public ModelAndView someMethod(@RequestParam("type") String type, @RequestParam("gare") String gare) {
-        System.out.println("/" + type + "/" + gare);
+        //System.out.println("/" + type + "/" + gare);
 
         //return new ModelAndView("coursesView :: resultsList");
 

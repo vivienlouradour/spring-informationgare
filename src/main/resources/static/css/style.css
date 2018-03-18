@@ -3,9 +3,10 @@ html, body {
     padding: 0;
     font-family: "Ubuntu", "Arial";
     font-size: 80px;
+    overflow: hidden;
 }
 
-.content {
+#container {
     margin-bottom: 70px;
 }
 
@@ -67,7 +68,7 @@ td:nth-child(3) {
 .departArrivee {
     font-size: 130px;
     font-weight: bold;
-    position: absolute;
+    position: fixed;
     bottom: 100px;
     right: 0;
     transform: translate(25%, -100%) rotate(-90deg);

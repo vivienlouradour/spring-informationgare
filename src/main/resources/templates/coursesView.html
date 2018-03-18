@@ -13,8 +13,8 @@
 </head>
 <body onload="startTime()" th:classappend="${type == 'departs' ? 'departsBody' : 'arriveesBody'}">
 
-<div class="content" th:fragment="resultsList" id="resultsList">
-    <table class="table" th:classappend="${type == 'departs' ? 'departs' : 'arrivees'}">
+<div class="content" th:fragment="resultsList" id="container">
+    <table class="table" th:classappend="${type == 'departs' ? 'departs' : 'arrivees'}" id="trainsList">
         <tr th:each="course : ${courses}">
             <td><span class="numTrain" th:text="${course.numTrain}"></span></td>
             <td >
@@ -37,11 +37,11 @@
 </div>
 
 <div id="footer" th:classappend="${type == 'departs' ? 'departs' : 'arrivees'}">
-    <div class='marquee'>
-        Clic rabot pas problem oui ?<span class="space"></span>
-        Nous nous excusons d'avance pour les retards éventuels.<span class="space"></span>
-        Manger 5 fruits et 5 légumes par jour.<span class="space"></span>
-    </div>
+    <!--<div class='marquee'>-->
+        <!--Clic rabot pas problem oui ?<span class="space"></span>-->
+        <!--Nous nous excusons d'avance pour les retards éventuels.<span class="space"></span>-->
+        <!--Manger 5 fruits et 5 légumes par jour.<span class="space"></span>-->
+    <!--</div>-->
     <button> AJOUT LIGNE </button>
     <div id="clock">
         <span id="hours">20</span>
