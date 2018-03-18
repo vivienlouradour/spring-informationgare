@@ -14,7 +14,7 @@
 </head>
 <body onload="startTime()" th:classappend="${type == 'departs' ? 'departsBody' : 'arriveesBody'}">
 
-<div class="content" th:fragment="resultsList" id="container">
+<div class="content" th:fragment="resultsList" id="container" >
     <table class="table" th:classappend="${type == 'departs' ? 'departs' : 'arrivees'}" id="trainsList">
         <tr th:each="course : ${courses}">
             <td><span class="numTrain" th:text="${course.numTrain}"></span></td>
@@ -32,10 +32,14 @@
             </td>
         </tr>
     </table>
-
-    <span class="departArrivee depart" th:if="${type == 'departs'}">départs</span>
-    <span class="departArrivee arrivee" th:if="${type == 'arrivees'}">arrivées</span>
 </div>
+<div id="noRace">
+    <span th:if="${type == 'departs'}">Aucun train au départ.</span>
+    <span th:if="${type == 'arrivees'}">Aucune arrivées prévues.</span>
+</div>
+
+<span class="departArrivee depart" th:if="${type == 'departs'}">départs</span>
+<span class="departArrivee arrivee" th:if="${type == 'arrivees'}">arrivées</span>
 
 <div id="footer" th:classappend="${type == 'departs' ? 'departs' : 'arrivees'}">
     <!--<div class='marquee'>-->

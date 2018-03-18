@@ -145,3 +145,12 @@ td:nth-child(4) {
     white-space: nowrap;
     margin-right: 200px;
 }
+
+#noRace {
+    display: none;
+    color: white;
+    font-size: 70px;
+    height: calc(100vh - 140px);
+    align-items: center;
+    justify-content: center;
+}

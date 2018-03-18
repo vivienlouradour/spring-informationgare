@@ -19,7 +19,7 @@ public class CourseServiceStub extends CourseService {
 		
 		courses = new ArrayList<>();
 
-		this.addCourse();
+		//this.addCourse();
 
 	}
 
@@ -72,7 +72,7 @@ public class CourseServiceStub extends CourseService {
 
 		vSillons.add(new Sillon(1, vPois));
 
-		vPassages.add(new Passage(new Timestamp(vCalendar.getTimeInMillis() + 2*60*60*1000), 1, vDepart));
+		vPassages.add(new Passage(new Timestamp(vCalendar.getTimeInMillis() + 2*60), 1, vDepart));
 		vCalendar.add(Calendar.HOUR_OF_DAY, 1);
 		vPassages.add(new Passage(new Timestamp(vCalendar.getTimeInMillis() + 3*60*60*1000), 2, vArret));
 		vCalendar.add(Calendar.HOUR_OF_DAY, 1);

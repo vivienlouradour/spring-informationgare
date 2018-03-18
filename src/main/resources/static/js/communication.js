@@ -71,6 +71,13 @@ $(document).ready(function () {
         $('#container').load('/update', {type: type, gare: gare},
             function (responseText, textStatus, XMLHttpRequest) {
                 if (textStatus === "success") {
+
+                    if(getNbRows() == 0){
+                        $("#noRace").css("display", "flex");
+                    } else {
+                        $('#noRace').hide();
+                    }
+
                     if (nbRows < getNbRows()) {
                         nbRows = getNbRows();
                         resetScroll();
