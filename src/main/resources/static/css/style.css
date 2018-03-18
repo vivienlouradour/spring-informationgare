@@ -1,7 +1,7 @@
 html, body {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto',"Ubuntu", "Arial";
+    font-family: 'Roboto', 'Ubuntu', 'Arial',serif;
     font-size: 80px;
     overflow: hidden;
 }
@@ -99,7 +99,6 @@ td:nth-child(4) {
 
 #clock {
     align-content: flex-end;
-    font-family: "Ubuntu", "Arial";
     /*position: absolute;*/
     /*bottom: 0px;*/
     /*right: 20px;*/
@@ -128,7 +127,6 @@ td:nth-child(4) {
 
 .marquee {
     overflow: hidden;
-    font-family: "Ubuntu", "Arial";
     font-size: 50px;
     color: white;
     display: flex;
