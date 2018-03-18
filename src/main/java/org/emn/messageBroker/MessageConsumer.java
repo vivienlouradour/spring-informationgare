@@ -1,9 +1,12 @@
 package org.emn.messageBroker;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Properties;
 
+import org.apache.kafka.clients.consumer.ConsumerRebalanceListener;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.TopicPartition;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -15,7 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public abstract class MessageConsumer implements Runnable {
 
-	KafkaConsumer<String, String> consumer;
+	KafkaConsumer<String, String> kafkaConsumer;
 	ObjectMapper mapper = new ObjectMapper();
 
 	public MessageConsumer(String topic) {
@@ -27,8 +30,23 @@ public abstract class MessageConsumer implements Runnable {
 		props.put("session.timeout.ms", "30000");
 		props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 		props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-		consumer = new KafkaConsumer<String, String>(props);
-		consumer.subscribe(Arrays.asList(topic));
+		// props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+		props.put("auto.offset.reset", "earliest");
+		kafkaConsumer = new KafkaConsumer<String, String>(props);
+		kafkaConsumer.subscribe(Arrays.asList(topic));
+		kafkaConsumer.subscribe(Arrays.asList(topic), new ConsumerRebalanceListener() {
+			public void onPartitionsRevoked(Collection<TopicPartition> partitions) {
+				System.out.printf("%s topic-partitions are revoked from this consumer\n",
+						Arrays.toString(partitions.toArray()));
+			}
+
+			public void onPartitionsAssigned(Collection<TopicPartition> partitions) {
+				System.out.printf("%s topic-partitions are assigned to this consumer\n",
+						Arrays.toString(partitions.toArray()));
+				// Place l'offset de lecture au début ie permet de lire touts les messages
+				kafkaConsumer.seekToBeginning(partitions);
+			}
+		});
 	}
 
 	abstract public void listen();

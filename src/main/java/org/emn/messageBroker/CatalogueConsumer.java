@@ -28,8 +28,10 @@ public class CatalogueConsumer extends MessageConsumer {
 	}
 
 	public void listen() {
+		// consumer.seekToBeginning(null);
+		// consumer.seekToBeginning(consumer.assignment());
 		while (true) {
-			ConsumerRecords<String, String> records = consumer.poll(1);
+			ConsumerRecords<String, String> records = kafkaConsumer.poll(100);
 			for (ConsumerRecord<String, String> record : records) {
 				// print the offset,key and value for the consumer records.
 				System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value());
