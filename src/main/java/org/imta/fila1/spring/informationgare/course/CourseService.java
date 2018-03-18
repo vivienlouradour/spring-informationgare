@@ -1,5 +1,7 @@
 package org.imta.fila1.spring.informationgare.course;
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,11 +20,13 @@ public class CourseService {
 	// @Autowired
 	// CourseRepository courseRepository;
 
+	private static final long tempsAffichageMax = (6 * 60 * 60) * 1000;
+
 	public List<Course> getDeparts(String aGare) {
 
 		ArrayList<Course> vDeparts = new ArrayList<>();
 		for (Course vCourse : courseRepository.findAll()) {
-			if (vCourse.isGareDepart(aGare)) {
+			if (vCourse.isGareDepart(aGare) && vCourse.getPassageDepart().getTimestamp().before(new Timestamp(System.currentTimeMillis() + tempsAffichageMax))) {
 				vDeparts.add(vCourse);
 			}
 		}
@@ -33,7 +37,7 @@ public class CourseService {
 
 		ArrayList<Course> vDeparts = new ArrayList<>();
 		for (Course vCourse : courseRepository.findAll()) {
-			if (vCourse.isGareArrivee(aGare)) {
+			if (vCourse.isGareArrivee(aGare) && vCourse.getPassageArrivee().getTimestamp().before(new Timestamp(System.currentTimeMillis() + tempsAffichageMax))) {
 				vDeparts.add(vCourse);
 			}
 		}

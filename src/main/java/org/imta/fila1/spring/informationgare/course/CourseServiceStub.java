@@ -13,6 +13,7 @@ public class CourseServiceStub extends CourseService {
 	private ArrayList<Course> courses;
 	private int compteur = 1;
 
+	private static final long tempsAffichageMax = (6 * 60 * 60) * 1000;
 
 	public CourseServiceStub(){
 		
@@ -31,7 +32,7 @@ public class CourseServiceStub extends CourseService {
 
 		ArrayList<Course> vDeparts = new ArrayList<>();
 		for (Course vCourse : courses) {
-			if (vCourse.isGareDepart(aGare)) {
+			if (vCourse.isGareDepart(aGare)&& vCourse.getPassageDepart().getTimestamp().before(new Timestamp(System.currentTimeMillis() + tempsAffichageMax))) {
 				vDeparts.add(vCourse);
 			}
 		}
@@ -43,7 +44,7 @@ public class CourseServiceStub extends CourseService {
 
 		ArrayList<Course> vDeparts = new ArrayList<>();
 		for (Course vCourse : courses) {
-			if (vCourse.isGareArrivee(aGare)) {
+			if (vCourse.isGareArrivee(aGare) && vCourse.getPassageArrivee().getTimestamp().before(new Timestamp(System.currentTimeMillis() + tempsAffichageMax))) {
 				vDeparts.add(vCourse);
 			}
 		}
