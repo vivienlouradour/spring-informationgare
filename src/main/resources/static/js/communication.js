@@ -64,19 +64,25 @@ $(document).ready(function () {
         audio.removeEventListener("ended", speak);
     }
 
+    function checkAndToggleVisibility(){
+        if(getNbRows() == 0){
+            $("#noRace").css("display", "flex");
+        } else {
+            $('#noRace').hide();
+        }
+    }
+
     var scrollThread = null;
     resetScroll();
+
+    checkAndToggleVisibility();
 
     setInterval(function () {
         $('#container').load('/update', {type: type, gare: gare},
             function (responseText, textStatus, XMLHttpRequest) {
                 if (textStatus === "success") {
 
-                    if(getNbRows() == 0){
-                        $("#noRace").css("display", "flex");
-                    } else {
-                        $('#noRace').hide();
-                    }
+                    checkAndToggleVisibility();
 
                     if (nbRows < getNbRows()) {
                         nbRows = getNbRows();
