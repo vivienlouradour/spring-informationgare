@@ -42,7 +42,7 @@ $(document).ready(function () {
 
     function resetScroll() {
         clearInterval(scrollThread);
-        var delayScroll = 10000 + 2 * 200 * nbRows;
+        var delayScroll = 10000 + 2 * 400 * nbRows;
         console.log(nbRows);
         console.log(delayScroll);
         scrollThread = setInterval(scrollDownAndUp, delayScroll);
@@ -52,9 +52,9 @@ $(document).ready(function () {
     function scrollDownAndUp() {
         if ($('#container').height() > $(window).height() - 70) {
             var nbRows = getNbRows();
-            var time = 200 * nbRows;
+            var time = 400 * nbRows;
             console.log(nbRows);
-            $('body,html').animate({scrollTop: $(document).height() - $(window).height()}, time).delay(2000);
+            $('body,html').animate({scrollTop: $(document).height() - $(window).height()}, time).delay(3000);
             $('body,html').animate({scrollTop: 0}, time).delay(10000);
         }
     }
