@@ -17,7 +17,7 @@ $(document).ready(function () {
     var nbRows = getNbRows();
     var nbRetards = getNbRetards();
 
-    var audio = new Audio('../audio/jingleSNCF.mp3');
+    var audio = new Audio('../audio/jingleSNCF.wav');
 
     var msg = new SpeechSynthesisUtterance();
     msg.lang = 'fr-FR';
