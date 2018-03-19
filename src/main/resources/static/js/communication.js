@@ -88,6 +88,7 @@ $(document).ready(function () {
                         nbRows = getNbRows();
                         resetScroll();
                         audio.play();
+                        $('#container tr:last').hide().insertAfter('#container tr:last').fadeIn('slow');
                     }
                     // console.log('nbRetards avant = ' + nbRetards);
                     // console.log('nbRetards maintenant = ' + getNbRetards());
@@ -123,7 +124,6 @@ $(document).ready(function () {
                     }
                 }
             });
-
     }, 1000);
 
 });
