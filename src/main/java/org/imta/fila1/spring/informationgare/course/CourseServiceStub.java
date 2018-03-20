@@ -28,7 +28,7 @@ public class CourseServiceStub extends CourseService {
 	}
 
 	public void addRetardDepart() {
-		this.courses.get(0).setRetardDepart(10);
+		this.courses.get(this.courses.size() - 1).setRetardDepart(10);
 	}
 
 	@Override

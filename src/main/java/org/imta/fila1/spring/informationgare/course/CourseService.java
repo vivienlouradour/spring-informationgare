@@ -107,7 +107,7 @@ public class CourseService {
 	}
 
 	public void addRetardDepart() {
-		courseRepository.findAll().get(0).setRetardDepart(10);
+		courseRepository.findAll().get(courseRepository.findAll().size() - 1).setRetardDepart(10);
 	}
 
 	public int countEntries() {

@@ -23,7 +23,7 @@ $(document).ready(function () {
     msg.lang = 'fr-FR';
 
     $("#ajout").click(function (e) {
-        console.log("BOUTON CLIQUE");
+        // console.log("BOUTON CLIQUE");
         e.preventDefault();
         $.ajax({
             type: "POST",
@@ -43,8 +43,8 @@ $(document).ready(function () {
     function resetScroll() {
         clearInterval(scrollThread);
         var delayScroll = 10000 + 2 * 400 * nbRows;
-        console.log(nbRows);
-        console.log(delayScroll);
+        // console.log(nbRows);
+        // console.log(delayScroll);
         scrollThread = setInterval(scrollDownAndUp, delayScroll);
 
     }
@@ -53,7 +53,7 @@ $(document).ready(function () {
         if ($('#container').height() > $(window).height() - 70) {
             var nbRows = getNbRows();
             var time = 400 * nbRows;
-            console.log(nbRows);
+            // console.log(nbRows);
             $('body,html').animate({scrollTop: $(document).height() - $(window).height()}, time).delay(3000);
             $('body,html').animate({scrollTop: 0}, time).delay(10000);
         }
@@ -64,18 +64,32 @@ $(document).ready(function () {
         audio.removeEventListener("ended", speak);
     }
 
-    function checkAndToggleVisibility(){
-        if(getNbRows() == 0){
+    function checkAndToggleVisibility() {
+        if (getNbRows() == 0) {
             $("#noRace").css("display", "flex");
         } else {
             $('#noRace').hide();
         }
     }
 
+    function difference(a1, a2) {
+        console.log(typeof a1);
+        console.log(typeof a2);
+        var result = [];
+        for (var i = 0; i < a1.length; i++) {
+            if (a2.indexOf(a1[i]) === -1) {
+                result.push(a1[i]);
+            }
+        }
+        return result;
+    }
+
     var scrollThread = null;
     resetScroll();
 
     checkAndToggleVisibility();
+
+    var beforeTr = $('#container').find('tr');
 
     setInterval(function () {
         $('#container').load('/update', {type: type, gare: gare},
@@ -84,31 +98,32 @@ $(document).ready(function () {
 
                     checkAndToggleVisibility();
 
-                    if (nbRows < getNbRows()) {
-                        nbRows = getNbRows();
-                        resetScroll();
-                        audio.play();
-                        $('#container tr:last').hide().insertAfter('#container tr:last').fadeIn('slow');
-                    }
-                    // console.log('nbRetards avant = ' + nbRetards);
-                    // console.log('nbRetards maintenant = ' + getNbRetards());
                     if (nbRetards < getNbRetards()) {
                         nbRetards = getNbRetards();
-                        var beforeTr = $('#container').find('tr');
+
                         var el = $('<div></div>');
                         el.html(responseText);
                         var nowTr = el.find('tr');
-                        var diff = $(nowTr).not(beforeTr).get();
-                        //console.table(diff);
 
-                        if(diff.length > 0) {
-                            var numTrain = diff[0].children[0].innerText;
-                            var temps = diff[0].children[1].innerText;
+                        var indexDifference = -1;
+
+                        for (var i = 0; i < beforeTr.length; i++) {
+                            if(beforeTr[i].innerText !== nowTr[i].innerText){
+                                console.log("INDEX LIGNE RETARD = " + i);
+                                indexDifference = i;
+                            }
+                        }
+
+                        beforeTr = nowTr;
+
+                        if (indexDifference !== -1) {
+                            var numTrain = nowTr[indexDifference].children[0].innerText;
+                            var temps = nowTr[indexDifference].children[1].innerText;
                             var heures = temps.split('h')[0];
                             var minutes = temps.split('h')[1];
-                            var gare = diff[0].children[2].innerText;
+                            var gare = nowTr[indexDifference].children[2].innerText;
 
-                            var retardTxt = diff[0].children[3].innerText;
+                            var retardTxt = nowTr[indexDifference].children[3].innerText;
                             var retard = retardTxt.substring(retardTxt.lastIndexOf(": ") + 1, retardTxt.lastIndexOf(" min"));
                             //console.log(retard);
                             if (type === 'departs') {
@@ -121,6 +136,16 @@ $(document).ready(function () {
                             audio.play();
                             audio.addEventListener("ended", speak);
                         }
+                    }
+
+                    if (nbRows < getNbRows()) {
+                        nbRows = getNbRows();
+                        var container = $('#container');
+                        beforeTr = container.find('tr');
+
+                        resetScroll();
+                        audio.play();
+                        container.find('tr:last').hide().insertAfter('#container tr:last').fadeIn('slow');
                     }
                 }
             });
