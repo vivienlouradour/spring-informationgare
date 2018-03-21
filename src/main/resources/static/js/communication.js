@@ -10,6 +10,49 @@ $(document).ready(function () {
         return $('#container').find('tr').length;
     }
 
+    function resetScroll() {
+        clearInterval(scrollThread);
+        var delayScroll = 10000 + 2 * 400 * nbRows;
+        // console.log(nbRows);
+        // console.log(delayScroll);
+        scrollThread = setInterval(scrollDownAndUp, delayScroll);
+
+    }
+
+    function scrollDownAndUp() {
+        if ($('#container').height() > $(window).height() - 70) {
+            var nbRows = getNbRows();
+            var time = 400 * nbRows;
+            // console.log(nbRows);
+            var bodyHtml = $('body,html');
+            bodyHtml.animate({scrollTop: $(document).height() - $(window).height()}, time).delay(3000);
+            bodyHtml.animate({scrollTop: 0}, time).delay(10000);
+        }
+    }
+
+    function speak() {
+        window.speechSynthesis.speak(msg);
+        audio.removeEventListener("ended", speak);
+    }
+
+    function checkAndToggleVisibility() {
+        if (getNbRows() === 0) {
+            $("#noRace").css("display", "flex");
+        } else {
+            $('#noRace').hide();
+        }
+    }
+
+    function findModifiedRow(beforeTr,nowTr){
+        for (var i = 0; i < beforeTr.length; i++) {
+            if(beforeTr[i].innerText !== nowTr[i].innerText){
+                console.log("INDEX LIGNE RETARD = " + i);
+                return i;
+            }
+        }
+        return -1;
+    }
+
     var currentLocation = window.location.pathname;
     var currentLocationSplit = currentLocation.split('/');
     var type = currentLocationSplit[1];
@@ -36,54 +79,11 @@ $(document).ready(function () {
         e.preventDefault();
         $.ajax({
             type: "POST",
-            url: "/testAddRetard"
+            url: "/testAddRetard",
+            data: {type: type}
         });
     });
-
-    function resetScroll() {
-        clearInterval(scrollThread);
-        var delayScroll = 10000 + 2 * 400 * nbRows;
-        // console.log(nbRows);
-        // console.log(delayScroll);
-        scrollThread = setInterval(scrollDownAndUp, delayScroll);
-
-    }
-
-    function scrollDownAndUp() {
-        if ($('#container').height() > $(window).height() - 70) {
-            var nbRows = getNbRows();
-            var time = 400 * nbRows;
-            // console.log(nbRows);
-            $('body,html').animate({scrollTop: $(document).height() - $(window).height()}, time).delay(3000);
-            $('body,html').animate({scrollTop: 0}, time).delay(10000);
-        }
-    }
-
-    function speak() {
-        window.speechSynthesis.speak(msg);
-        audio.removeEventListener("ended", speak);
-    }
-
-    function checkAndToggleVisibility() {
-        if (getNbRows() == 0) {
-            $("#noRace").css("display", "flex");
-        } else {
-            $('#noRace').hide();
-        }
-    }
-
-    function difference(a1, a2) {
-        console.log(typeof a1);
-        console.log(typeof a2);
-        var result = [];
-        for (var i = 0; i < a1.length; i++) {
-            if (a2.indexOf(a1[i]) === -1) {
-                result.push(a1[i]);
-            }
-        }
-        return result;
-    }
-
+    
     var scrollThread = null;
     resetScroll();
 
@@ -105,14 +105,7 @@ $(document).ready(function () {
                         el.html(responseText);
                         var nowTr = el.find('tr');
 
-                        var indexDifference = -1;
-
-                        for (var i = 0; i < beforeTr.length; i++) {
-                            if(beforeTr[i].innerText !== nowTr[i].innerText){
-                                console.log("INDEX LIGNE RETARD = " + i);
-                                indexDifference = i;
-                            }
-                        }
+                        var indexDifference = findModifiedRow(beforeTr,nowTr);
 
                         beforeTr = nowTr;
 

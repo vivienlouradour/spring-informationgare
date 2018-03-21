@@ -45,8 +45,8 @@ public class CourseController {
     }
 
     @RequestMapping(path = "testAddRetard")
-    public void testAddRetard() {
-        courseService.addRetardDepart();
+    public void testAddRetard(@RequestParam("type") String type) {
+        courseService.addRetard(type);
     }
 
     @RequestMapping(value = "/update")
@@ -58,7 +58,7 @@ public class CourseController {
         //model.addAttribute("courses",courseService.getDeparts(courseService.getActualCity()));
         //return "redirect:/" + courseService.getActualType() + "/" + courseService.getActualCity();
         //        return "redirect:/departs/cholet";
-        return getCourse(type, gare, "coursesView :: resultsList");
         //return "coursesView :: resultsList";
+        return getCourse(type, gare, "coursesView :: resultsList");
     }
 }
