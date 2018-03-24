@@ -42,11 +42,11 @@
 <span class="departArrivee arrivee" th:if="${type == 'arrivees'}">arrivées</span>
 
 <div id="footer" th:classappend="${type == 'departs' ? 'departs' : 'arrivees'}">
-    <!--<div class='marquee'>-->
-        <!--Clic rabot pas problem oui ?<span class="space"></span>-->
-        <!--Nous nous excusons d'avance pour les retards éventuels.<span class="space"></span>-->
-        <!--Manger 5 fruits et 5 légumes par jour.<span class="space"></span>-->
-    <!--</div>-->
+    <div class='marquee'>
+        Clic rabot pas problem oui ?<span class="space"></span>
+        Nous nous excusons d'avance pour les retards éventuels.<span class="space"></span>
+        Manger 5 fruits et 5 légumes par jour.<span class="space"></span>
+    </div>
     <button id="ajout"> AJOUT LIGNE </button>
     <button id="retard"> AJOUT RETARD </button>
     <div id="clock">
