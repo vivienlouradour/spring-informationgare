@@ -138,7 +138,19 @@ $(document).ready(function () {
 
                         resetScroll();
                         audio.play();
-                        container.find('tr:last').hide().insertAfter('#container tr:last').fadeIn('slow');
+                        //container.find('tr:last').hide().insertAfter('#container tr:last').fadeIn('slow');
+
+                        $('tr:last')
+                            .find('td')
+                            .wrapInner('<div style="display: none;" />')
+                            .parent()
+                            .find('td > div')
+                            .slideDown(500, function () {
+
+                                var $set = $(this);
+                                $set.replaceWith($set.contents());
+
+                            });
                     }
                 }
             });
