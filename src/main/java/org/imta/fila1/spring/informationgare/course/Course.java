@@ -21,6 +21,7 @@ public class Course {
 	private String gareDepart;
 	private int retardArrivee; //Retard à l'arrivée en minutes*
 	private int retardDepart; //Retard au départ en minutes
+
 	private boolean isCancelled;
 
 	private ArrayList<Sillon> listSillons;
@@ -173,6 +174,14 @@ public class Course {
 
 	public String getArriveeRetardMessage(){
 		return estEnRetardArrivee() ? ("Retard : " + getRetardArrivee() + " min") : "A l'heure";
+	}
+
+	public boolean getCancelled() {
+		return isCancelled;
+	}
+
+	public void setCancelled(boolean cancelled) {
+		isCancelled = cancelled;
 	}
 }
 
