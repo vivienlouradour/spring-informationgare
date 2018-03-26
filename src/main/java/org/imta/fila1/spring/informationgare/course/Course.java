@@ -21,6 +21,7 @@ public class Course {
 	private String gareDepart;
 	private int retardArrivee; //Retard à l'arrivée en minutes*
 	private int retardDepart; //Retard au départ en minutes
+	private boolean isCancelled;
 
 	private ArrayList<Sillon> listSillons;
 	private ArrayList<Passage> listPassages;
@@ -44,6 +45,8 @@ public class Course {
 
 		this.retardArrivee = 0;
 		this.retardDepart = 0;
+
+		this.isCancelled = false;
 	}
 	
 	public String formatNomGare(String aGare) {
