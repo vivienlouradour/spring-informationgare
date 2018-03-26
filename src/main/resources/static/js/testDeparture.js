@@ -131,7 +131,7 @@ $(document).ready(function () {
 
                             var retardTxt = nowTr[indexDifference].children[0].children[3].innerText;
                             var retard = retardTxt.substring(retardTxt.lastIndexOf(": ") + 1, retardTxt.lastIndexOf(" min"));
-                            
+
                             var truc = "";
                             if (retardTxt !== 'Annule') {
                                 truc = 'a un retard de ' + retard + ' minutes.';
