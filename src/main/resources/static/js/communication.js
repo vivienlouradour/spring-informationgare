@@ -88,8 +88,7 @@ $(document).ready(function () {
         e.preventDefault();
         $.ajax({
             type: "POST",
-            url: "/testCancel",
-            data: {type: type}
+            url: "/testCancel"
         });
     });
     
