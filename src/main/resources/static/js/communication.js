@@ -114,8 +114,12 @@ $(document).ready(function () {
                     checkAndToggleVisibility();
 
                     if (nbRetards < getNbRetards() || nbAnnule < getNbAnnule()) {
-                        nbRetards = getNbRetards();
-                        nbAnnule = getNbAnnule();
+                        if(nbRetards < getNbRetards()){
+                            nbRetards = getNbRetards();
+                        }
+                        if(nbAnnule < getNbAnnule()){
+                            nbAnnule = getNbAnnule();
+                        }
 
                         var el = $('<div></div>');
                         el.html(responseText);
