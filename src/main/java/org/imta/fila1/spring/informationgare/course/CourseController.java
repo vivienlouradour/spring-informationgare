@@ -59,6 +59,11 @@ public class CourseController {
         courseService.addRetard(type);
     }
 
+    @RequestMapping(path = "testCancel")
+    public void testAddRetard() {
+        courseService.cancel();
+    }
+
     @RequestMapping(value = "/update")
     public ModelAndView someMethod(@RequestParam("type") String type, @RequestParam("gare") String gare, @RequestParam String style) {
         if(style.equals("old")){

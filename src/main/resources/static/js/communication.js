@@ -83,6 +83,15 @@ $(document).ready(function () {
             data: {type: type}
         });
     });
+
+    $("#annuler").click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/testCancel",
+            data: {type: type}
+        });
+    });
     
     var scrollThread = null;
     resetScroll();
