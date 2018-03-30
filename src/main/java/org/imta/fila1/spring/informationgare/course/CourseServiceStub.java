@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CourseServiceStub extends CourseService {
+public class CourseServiceStub {
 
     private ArrayList<Course> courses;
     private int compteur = 1;
@@ -18,9 +18,6 @@ public class CourseServiceStub extends CourseService {
     public CourseServiceStub() {
 
         courses = new ArrayList<>();
-
-        //this.addCourse();
-
     }
 
     public void duplicate() {
@@ -35,7 +32,6 @@ public class CourseServiceStub extends CourseService {
         }
     }
 
-    @Override
     public List<Course> getDeparts(String aGare) {
 
         ArrayList<Course> vDeparts = new ArrayList<>();
@@ -47,7 +43,6 @@ public class CourseServiceStub extends CourseService {
         return vDeparts;
     }
 
-    @Override
     public List<Course> getArrivees(String aGare) {
 
         ArrayList<Course> vDeparts = new ArrayList<>();

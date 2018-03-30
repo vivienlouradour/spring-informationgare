@@ -18,7 +18,7 @@
     <table class="table" th:classappend="${type == 'departs' ? 'departs' : 'arrivees'}" id="trainsList">
         <tr th:each="course : ${courses}">
             <td><span class="numTrain" th:text="${course.numTrain}"></span></td>
-            <td >
+            <td>
                 <span class="heureDepart" th:if="${type == 'departs'}" th:text="${course.heureDepart}"></span>
                 <span class="heureDepart" th:if="${type == 'arrivees'}" th:text="${course.heureArrivee}"></span>
             </td>
